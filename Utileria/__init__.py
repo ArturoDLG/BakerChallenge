@@ -5,15 +5,15 @@ from pygame import Rect as Rectangulo, image, transform
 from pygame import MOUSEBUTTONDOWN, QUIT, KEYDOWN, K_ESCAPE, FULLSCREEN
 from abc import ABCMeta, abstractmethod
 
-# Constantes
+# Constantes de colores
 BLANCO = 255, 255, 255,
 NEGRO = 0, 0, 0,
+GRIS_OSCURO = 39, 40, 39
 AZUL = 0, 0, 255,
-
-
 
 # Funciones
 def dibujar_texto(texto, fuente, superficie, x, y, COLOR):
+    """Imprime en pantalla el texto deseado"""
     objetotexto = fuente.render(texto, 1, COLOR)
     rectangulotexto = objetotexto.get_rect()
     rectangulotexto.topleft = (x, y)
@@ -76,7 +76,7 @@ class Boton(object):
     def click(self, evento_mouse):
         """Metodo privado para comprobar si el usuario
         realizo un click en el boton"""
-        if evento_mouse == MOUSEBUTTONDOWN:
+        if evento_mouse.type == MOUSEBUTTONDOWN:
             if self.__rectangulo.collidepoint(mouse.get_pos()):
                 return True
         return False
@@ -109,8 +109,8 @@ class Director(object):
     """Clase director"""
 
     def __init__(self):
-        self.screen = display.set_mode((0, 0), FULLSCREEN)
-        display.set_mode((0, 0), FULLSCREEN)
+        self.screen = display.set_mode((500, 650))
+        display.set_mode((500, 650))
         display.set_caption("Tic Tac Toe")
         self.scene = None
         self.quit_flag = False

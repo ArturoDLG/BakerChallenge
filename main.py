@@ -1,7 +1,6 @@
-import pygame as game
-from utileria import Director
+from Utileria import Director
 from Escenas.Escenarios import EscenaIntro, EscenaOpcion, EscenaJuego
-from pygame import init
+from itertools import  cycle
 
 if __name__ == '__main__':
     director = Director()
@@ -15,4 +14,8 @@ if __name__ == '__main__':
     director.change_scene(opcion)
     director.loop()
 
+    juego.imagen_jugador = opcion.imagen_jugador
+    juego.imagen_IA = opcion.imagen_IA
 
+    director.change_scene(juego)
+    director.loop()
