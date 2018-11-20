@@ -1,6 +1,8 @@
 from Utileria import Escenario, Boton, dibujar_texto
 from Utileria import  BLANCO, NEGRO, GRIS_OSCURO
 from pygame import font, init
+from MiniMax import Tablero, Jugador_IA, JUGADOR, IA
+from Other_MiniMax import Board, jugadorMaquina, Jugador_O, Jugador_X
 from itertools import cycle
 
 init()
@@ -64,14 +66,11 @@ class EscenaOpcion(Escenario):
 
 
 class EscenaJuego(Escenario):
-
-    #Constantes de la clase
-    MINI = 'm'
-    MAX = 'M'
-
     def __init__(self, director):
         Escenario.__init__(self, director)
         self.respuesta = True
+        # self.tablero_virtual = Tablero()
+        self.tablero_virtual = Board()
         self.fondo_tablero = Boton(0,0,150,500,"Escenas/media/fondo_blanco.png")
         self.casilla1 = Boton(12.5,162.5,150,150,"Escenas/media/fondo_blanco.png")
         self.casilla2 = Boton(175,162.5,150,150,"Escenas/media/fondo_blanco.png")
@@ -82,18 +81,44 @@ class EscenaJuego(Escenario):
         self.casilla7 = Boton(12.5,487.5,150,150,"Escenas/media/fondo_blanco.png")
         self.casilla8 = Boton(175,487.5,150,150,"Escenas/media/fondo_blanco.png")
         self.casilla9 = Boton(337.5,487.5,150,150,"Escenas/media/fondo_blanco.png")
-        self.estado_partida = [[None, None, None],
-                               [None, None, None],
-                               [None, None, None]]
+        self.casillas_validas = {0: self.casilla1, 1: self.casilla2, 2: self.casilla3,
+                                 3: self.casilla4, 4: self.casilla5, 5: self.casilla6,
+                                 6: self.casilla7, 7: self.casilla8, 8: self.casilla9}
         self.imagen_jugador = None
         self.imagen_IA = None
-        self.turnos = cycle(['jugador','IA'])
+        # self.jugador_IA = Jugador_IA()
+        # self.turnos = cycle([JUGADOR, IA])
+        self.turnos = cycle([Jugador_X, Jugador_O])
+        self.turno = next(self.turnos)
+        self.iniciar_contador = False
+        self.contador = 0
 
     def actualizar(self):
-        pass
+        if self.iniciar_contador:
+            self.contador += 1
+
+        self.fin_del_juego()
+
+        if self.turno == Jugador_O and self.contador == 15:
+            # self.jugador_IA.realizar_movimiento(self.tablero_virtual, self.turno)
+            # mov = self.jugador_IA.movimiento
+            mov = jugadorMaquina(self.tablero_virtual, self.turno )
+            self.casillas_validas[mov].imagen = self.imagen_IA
+            self.casillas_validas.pop(mov)
+            self.turno  = next(self.turnos)
+            self.contador = 0
+            self.iniciar_contador = False
 
     def eventos(self, e):
-        pass
+        if self.turno == Jugador_X:
+            for mov, casilla in self.casillas_validas.items():
+                if casilla.click(e):
+                    casilla.imagen = self.imagen_jugador
+                    self.tablero_virtual.makeMove(mov, self.turno)
+                    self.casillas_validas.pop(mov)
+                    self.turno = next(self.turnos)
+                    self.iniciar_contador = True
+                    break
 
     def en_escena(self):
         self.director.screen.fill(GRIS_OSCURO)
@@ -108,4 +133,7 @@ class EscenaJuego(Escenario):
         self.director.screen.blit(*self.casilla8.imprimir())
         self.director.screen.blit(*self.casilla9.imprimir())
 
+    def fin_del_juego(self):
+        if self.tablero_virtual.gameOver():
+            self.director.quit_flag = True
 
