@@ -7,23 +7,26 @@
 # copyright (C) 2008 Sergio Sanchez Mendez
 # www.starcostudios.com/community/blog
 #
-# Este programa es software libre: usted puede redistribuirlo y/o modificarlo bajo los terminos de la Licencia Publica General GNU publicada por la
-# Fundacion para el Software Libre, ya sea la version 3 de la Licencia, o (a su eleccion) cualquier version posterior. Este programa se distribuye
-# con la esperanza de que sea util, pero SIN GARANTIA ALGUNA; ni siquiera la garantia implicita MERCANTIL o de APTITUD PARA UN PROPOSITO DETERMINADO.
-# Consulte los detalles de la Licencia Publica General GNU para obtener una informacion mas detallada. Deberia haber recibido una copia de la Licencia
-# Publica General GNU junto a este programa. En caso contrario, consulte <http://www.gnu.org/licenses/>.
+# Este programa es software libre: usted puede redistribuirlo y/o modificarlo bajo los terminos de la Licencia
+# Publica General GNU publicada por la Fundacion para el Software Libre, ya sea la version 3 de la Licencia,
+# o (a su eleccion) cualquier version posterior. Este programa se distribuye con la esperanza de que sea util,
+# pero SIN GARANTIA ALGUNA; ni siquiera la garantia implicita MERCANTIL o de APTITUD PARA UN PROPOSITO DETERMINADO.
+# Consulte los detalles de la Licencia Publica General GNU para obtener una informacion mas detallada. Deberia haber
+# recibido una copia de la Licencia Publica General GNU junto a este programa. En caso contrario,
+# consulte <http://www.gnu.org/licenses/>.
 
 from operator import itemgetter
 
 # Constantes del tablero
-VACIO = '-' # Casilla Vacia
-JUGADOR = 'j' # Casilla del jugador
-IA = 'i' # Casilla de la IA
+VACIO = '-'  # Casilla Vacia
+JUGADOR = 'j'  # Casilla del jugador
+IA = 'i'  # Casilla de la IA
+
 
 class Tablero:
     def __init__(self):
         """Crear el tablero virtual del tic tac toe"""
-        self.casillas = [VACIO]*9
+        self.casillas = [VACIO] * 9
 
     def movimientos_validos(self):
         """Retorna un generador de movimientos validos
@@ -44,13 +47,13 @@ class Tablero:
         Retorna X si el ganador es el usuario
         Retorna O si el ganador es la IA
         Retorna None en caso de no haber ganador"""
-        filas_ganadoras = [[0,1,2],[3,4,5],[6,7,8],# vertical
-                          [0,3,6],[1,4,7],[2,5,8], # horizontal
-                          [0,4,8],[2,4,6]]         # diagonal
+        filas_ganadoras = [[0, 1, 2], [3, 4, 5], [6, 7, 8],  # vertical
+                           [0, 3, 6], [1, 4, 7], [2, 5, 8],  # horizontal
+                           [0, 4, 8], [2, 4, 6]]  # diagonal
 
         for fila in filas_ganadoras:
             jugador = fila[0]
-            if self.casillas[jugador] != VACIO and self.todos_iguales([self.casillas[i] for i in fila]):
+            if self.casillas[jugador] != VACIO and Tablero.todos_iguales([self.casillas[i] for i in fila]):
                 return self.casillas[jugador]
 
     def fin_del_juego(self):
@@ -59,19 +62,22 @@ class Tablero:
         no existen mas movimiento validos"""
         return self.ganador() or not self.movimientos_validos()
 
-    def todos_iguales(self, lista):
+    @staticmethod
+    def todos_iguales(lista):
         """Determinar que todos los elementos de la
         lista son iguales"""
         return not lista or lista == [lista[0]] * len(lista)
 
 
-class Jugador_IA:
+class JugadorIA:
     """Clase emuladora de la IA"""
-    def realizar_movimiento(self, tablero, jugador):
+
+    @staticmethod
+    def realizar_movimiento(tablero, jugador):
 
         oponente = {JUGADOR: IA, IA: JUGADOR}
 
-        def evaluar_movimiento(movimiento, j= jugador):
+        def evaluar_movimiento(movimiento, j=jugador):
             """Evalua el mejor movimiento a realizar
             para poder ganar"""
             try:
@@ -107,6 +113,6 @@ class Jugador_IA:
 
         movimientos = [(movimiento, evaluar_movimiento(movimiento))
                        for movimiento in tablero.movimientos_validos()]
-        movimiento = max(movimientos, key= itemgetter(1))[0]
+        movimiento = max(movimientos, key=itemgetter(1))[0]
         tablero.hacer_movimiento(movimiento, jugador)
         return movimiento

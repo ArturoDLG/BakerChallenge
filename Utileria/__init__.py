@@ -1,8 +1,8 @@
 # paquete para manejo de clases para el proyecto
 
-from pygame import display, time, event, mouse, font
+from pygame import display, time, event, mouse
 from pygame import Rect as Rectangulo, image, transform
-from pygame import MOUSEBUTTONDOWN, QUIT, KEYDOWN, K_ESCAPE, FULLSCREEN
+from pygame import MOUSEBUTTONDOWN, QUIT, KEYDOWN, K_ESCAPE
 from abc import ABCMeta, abstractmethod
 
 # Constantes de colores
@@ -13,14 +13,18 @@ AZUL = 0, 151, 219,
 NARANAJA = 230, 114, 35,
 
 # Funciones
-def dibujar_texto(texto, fuente, superficie, x, y, COLOR):
+
+
+def dibujar_texto(texto, fuente, superficie, x, y, color):
     """Imprime en pantalla el texto deseado"""
-    objetotexto = fuente.render(texto, 1, COLOR)
+    objetotexto = fuente.render(texto, 1, color)
     rectangulotexto = objetotexto.get_rect()
     rectangulotexto.topleft = (x, y)
     superficie.blit(objetotexto, rectangulotexto)
 
 # Clases
+
+
 class Boton(object):
     """Clase para implementar botones en Pygame"""
 
@@ -44,9 +48,9 @@ class Boton(object):
     @posicion.setter
     def posicion(self, pos_x=None, pos_y=None):
         """Metodo para modificar la posicion del boton"""
-        if not pos_x == None:
+        if pos_x is not None:
             self.__rectangulo.x = pos_x
-        if not pos_y == None:
+        if pos_y is not None:
             self.__rectangulo.y = pos_y
 
     @property
@@ -57,9 +61,9 @@ class Boton(object):
     @dimension.setter
     def dimension(self, alto=None, ancho=None):
         """Metodo para modificar la dimension del boton"""
-        if not alto == None:
+        if alto is not None:
             self.__rectangulo.height = alto
-        if not ancho == None:
+        if ancho is not None:
             self.__rectangulo.width = ancho
 
     @property
@@ -77,9 +81,8 @@ class Boton(object):
     def click(self, evento_mouse):
         """Metodo privado para comprobar si el usuario
         realizo un click en el boton"""
-        if evento_mouse.type == MOUSEBUTTONDOWN:
-            if self.__rectangulo.collidepoint(mouse.get_pos()):
-                return True
+        if evento_mouse.type == MOUSEBUTTONDOWN and self.__rectangulo.collidepoint(*mouse.get_pos()):
+            return True
         return False
 
 
@@ -118,7 +121,7 @@ class Director(object):
         self.clock = time.Clock()
 
     def loop(self):
-        "Pone en funcionamiento el juego."
+        """Pone en funcionamiento el juego."""
         while not self.quit_flag:
             time = self.clock.tick(60)
 
@@ -140,6 +143,6 @@ class Director(object):
             display.update()
 
     def change_scene(self, scene):
-        "Alterna la escena actual."
+        """Alterna la escena actual."""
         self.scene = scene
         self.quit_flag = False

@@ -1,7 +1,7 @@
 from Utileria import Escenario, Boton, dibujar_texto
-from Utileria import  BLANCO, GRIS_OSCURO, NARANAJA, AZUL
+from Utileria import BLANCO, GRIS_OSCURO, NARANAJA, AZUL
 from pygame import font, init, mixer
-from MiniMax import Tablero, Jugador_IA, JUGADOR, IA
+from MiniMax import Tablero, JugadorIA, JUGADOR, IA
 from itertools import cycle
 
 init()
@@ -11,10 +11,11 @@ FUENTE_TITULOS_MINI = font.Font("Escenas/media/Roboto-Black.ttf", 60)
 FUENTE_ETIQUETAS = font.Font("Escenas/media/Roboto-Regular.ttf", 80)
 FUENTE_ETIQUETAS_MINI = font.Font("Escenas/media/Roboto-Regular.ttf", 50)
 
+
 class EscenaIntro(Escenario):
     def __init__(self, director):
         Escenario.__init__(self, director)
-        self.logotipo = Boton(100,40,300,300,"Escenas/media/logo.png")
+        self.logotipo = Boton(100, 40, 300, 300, "Escenas/media/logo.png")
         self. contador = 0
 
     def actualizar(self):
@@ -28,43 +29,44 @@ class EscenaIntro(Escenario):
     def en_escena(self):
         self.director.screen.fill(BLANCO)
         self.director.screen.blit(*self.logotipo.imprimir())
-        dibujar_texto("#BakerChallenge",FUENTE_TITULOS_MINI,
-                      self.director.screen,20,400,GRIS_OSCURO)
+        dibujar_texto("#BakerChallenge", FUENTE_TITULOS_MINI,
+                      self.director.screen, 20, 400, GRIS_OSCURO)
 
 
 class EscenaJuego(Escenario):
     def __init__(self, director):
         Escenario.__init__(self, director)
         # Elementos de la interfaz del tablero
-        self.fondo_tablero = Boton(0,0,150,500,"Escenas/media/fondo_blanco.png")
-        self.casilla1 = Boton(12.5,162.5,150,150,"Escenas/media/fondo_blanco.png")
-        self.casilla2 = Boton(175,162.5,150,150,"Escenas/media/fondo_blanco.png")
-        self.casilla3 = Boton(337.5,162.5,150,150,"Escenas/media/fondo_blanco.png")
-        self.casilla4 = Boton(12.5,325,150,150,"Escenas/media/fondo_blanco.png")
-        self.casilla5 = Boton(175,325,150,150,"Escenas/media/fondo_blanco.png")
-        self.casilla6 = Boton(337.5,325,150,150,"Escenas/media/fondo_blanco.png")
-        self.casilla7 = Boton(12.5,487.5,150,150,"Escenas/media/fondo_blanco.png")
-        self.casilla8 = Boton(175,487.5,150,150,"Escenas/media/fondo_blanco.png")
-        self.casilla9 = Boton(337.5,487.5,150,150,"Escenas/media/fondo_blanco.png")
+        self.fondo_tablero = Boton(0, 0, 150, 500, "Escenas/media/fondo_blanco.png")
+        self.casilla1 = Boton(12.5, 162.5, 150, 150, "Escenas/media/fondo_blanco.png")
+        self.casilla2 = Boton(175, 162.5, 150, 150, "Escenas/media/fondo_blanco.png")
+        self.casilla3 = Boton(337.5, 162.5, 150, 150, "Escenas/media/fondo_blanco.png")
+        self.casilla4 = Boton(12.5, 325, 150, 150, "Escenas/media/fondo_blanco.png")
+        self.casilla5 = Boton(175, 325, 150, 150, "Escenas/media/fondo_blanco.png")
+        self.casilla6 = Boton(337.5, 325, 150, 150, "Escenas/media/fondo_blanco.png")
+        self.casilla7 = Boton(12.5, 487.5, 150, 150, "Escenas/media/fondo_blanco.png")
+        self.casilla8 = Boton(175, 487.5, 150, 150, "Escenas/media/fondo_blanco.png")
+        self.casilla9 = Boton(337.5, 487.5, 150, 150, "Escenas/media/fondo_blanco.png")
         self.casillas_validas = {0: self.casilla1, 1: self.casilla2, 2: self.casilla3,
                                  3: self.casilla4, 4: self.casilla5, 5: self.casilla6,
                                  6: self.casilla7, 7: self.casilla8, 8: self.casilla9}
         self.imagen_jugador = "Escenas/media/Tu.png"
         self.imagen_IA = "Escenas/media/Baker.png"
-        self.marcador_jugador = Boton(50,50,75,75,"Escenas/media/Tu.png")
-        self.marcador_IA = Boton(375,50,75,75,"Escenas/media/Baker.png")
+        self.marcador_jugador = Boton(50, 50, 75, 75, "Escenas/media/Tu.png")
+        self.marcador_IA = Boton(375, 50, 75, 75, "Escenas/media/Baker.png")
         self.click = mixer.Sound("Escenas/media/click.ogg")
         self.musica_fondo = mixer.music.load("Escenas/media/Kick Shock.mp3")
 
         # Elementos del algoritmo MiniMax
         self.tablero_virtual = Tablero()
-        self.jugador_IA = Jugador_IA()
+        self.jugador_IA = JugadorIA()
         self.turnos = cycle([JUGADOR, IA])
         self.turno = next(self.turnos)
         self.color_jugador = AZUL
         self.color_IA = AZUL
         self.iniciar_contador = False
         self.contador = 0
+        self.contador_resultado = 0
 
     def actualizar(self):
         if self.iniciar_contador:
@@ -81,9 +83,8 @@ class EscenaJuego(Escenario):
             mov = self.jugador_IA.realizar_movimiento(self.tablero_virtual, self.turno)
             self.casillas_validas[mov].imagen = self.imagen_IA
             self.casillas_validas.pop(mov)
-            self.turno  = next(self.turnos)
+            self.turno = next(self.turnos)
             self.contador = 0
-            self.contador_resultado = 0
             self.iniciar_contador = False
 
     def eventos(self, e):
@@ -107,7 +108,7 @@ class EscenaJuego(Escenario):
         self.director.screen.fill(GRIS_OSCURO)
         self.director.screen.blit(*self.fondo_tablero.imprimir())
         dibujar_texto("TU", FUENTE_ETIQUETAS_MINI, self.director.screen,
-                      60,0,self.color_jugador)
+                      60, 0, self.color_jugador)
         self.director.screen.blit(*self.marcador_jugador.imprimir())
         dibujar_texto("BAKER", FUENTE_ETIQUETAS_MINI, self.director.screen,
                       340, 0, self.color_IA)
@@ -172,7 +173,7 @@ class EscenaGanador(Escenario):
 
     def mostrar_ganador(self):
         if self.ganador == 'i':
-            self.baker = Boton(150,300,200,200,"Escenas/media/Baker.png")
+            self.baker = Boton(150, 300, 200, 200, "Escenas/media/Baker.png")
         elif self.ganador == 'j':
             self.tu = Boton(150, 300, 200, 200, "Escenas/media/Tu.png")
         else:
@@ -183,8 +184,8 @@ class EscenaGanador(Escenario):
 class EscenaContinuar(Escenario):
     def __init__(self, director):
         Escenario.__init__(self, director)
-        self.continuar = Boton(100,270,100,100,"Escenas/media/aceptar.png")
-        self.salir = Boton(300,270,100,100,"Escenas/media/salir.png")
+        self.continuar = Boton(100, 270, 100, 100, "Escenas/media/aceptar.png")
+        self.salir = Boton(300, 270, 100, 100, "Escenas/media/salir.png")
         self.respuesta_continuar = True
 
     def actualizar(self):
