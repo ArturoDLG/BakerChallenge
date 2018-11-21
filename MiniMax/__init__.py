@@ -1,3 +1,20 @@
+#!/usr/bin/env python
+
+# -*- coding: iso-8859-15 -*-
+# python-starcoIAtutorial:
+# Codigo fuente implementando tres en raya con minimax
+#
+# copyright (C) 2008 Sergio Sanchez Mendez
+# www.starcostudios.com/community/blog
+#
+# Este programa es software libre: usted puede redistribuirlo y/o modificarlo bajo los terminos de la Licencia Publica General GNU publicada por la
+# Fundacion para el Software Libre, ya sea la version 3 de la Licencia, o (a su eleccion) cualquier version posterior. Este programa se distribuye
+# con la esperanza de que sea util, pero SIN GARANTIA ALGUNA; ni siquiera la garantia implicita MERCANTIL o de APTITUD PARA UN PROPOSITO DETERMINADO.
+# Consulte los detalles de la Licencia Publica General GNU para obtener una informacion mas detallada. Deberia haber recibido una copia de la Licencia
+# Publica General GNU junto a este programa. En caso contrario, consulte <http://www.gnu.org/licenses/>.
+
+from operator import itemgetter
+
 # Constantes del tablero
 VACIO = '-' # Casilla Vacia
 JUGADOR = 'j' # Casilla del jugador
@@ -11,7 +28,7 @@ class Tablero:
     def movimientos_validos(self):
         """Retorna un generador de movimientos validos
         en el tablero"""
-        return (pos for pos in range(9) if self.casillas[pos] == VACIO)
+        return [pos for pos in range(9) if self.casillas[pos] == VACIO]
 
     def hacer_movimiento(self, movimiento, jugador):
         """Coloca una ficha en el tablero dependiendo
@@ -47,25 +64,12 @@ class Tablero:
         lista son iguales"""
         return not lista or lista == [lista[0]] * len(lista)
 
+
 class Jugador_IA:
     """Clase emuladora de la IA"""
-    def __init__(self):
-        self.movimiento = None
-
     def realizar_movimiento(self, tablero, jugador):
 
         oponente = {JUGADOR: IA, IA: JUGADOR}
-
-        def juzgar(ganador):
-            """Evalua la puntuacion del movimiento a realizar
-            Retorna 1 si la jugada lo hace ganar
-            Retorna 0 si la jugada no determina el juego
-            Retorna -1 si la jugada hace perder"""
-            if ganador == jugador:
-                return 1
-            if ganador == None:
-                return 0
-            return -1
 
         def evaluar_movimiento(movimiento, j= jugador):
             """Evalua el mejor movimiento a realizar
@@ -73,9 +77,12 @@ class Jugador_IA:
             try:
                 tablero.hacer_movimiento(movimiento, j)
                 if tablero.fin_del_juego():
-                    return juzgar(tablero.ganador())
+                    """Evalua la puntuacion del movimiento a realizar
+                       Retorna 1 si la jugada lo hace ganar
+                       Retorna 0 si la jugada no determina el juego
+                       Retorna -1 si la jugada hace perder"""
+                    return {jugador: 1, None: 0}.get(tablero.ganador(), -1)
 
-                print(list(tablero.movimientos_validos()))
                 resultados = (evaluar_movimiento(sig_movimiento, oponente[j])
                               for sig_movimiento in tablero.movimientos_validos())
 
@@ -96,10 +103,10 @@ class Jugador_IA:
                     return max_elemento
 
             finally:
-                print('*')
                 tablero.deshacer_movimiento(movimiento)
 
         movimientos = [(movimiento, evaluar_movimiento(movimiento))
                        for movimiento in tablero.movimientos_validos()]
-        self.movimiento = max(movimientos, key= lambda mov: mov[1])[0]
-        tablero.hacer_movimiento(self.movimiento, jugador)
+        movimiento = max(movimientos, key= itemgetter(1))[0]
+        tablero.hacer_movimiento(movimiento, jugador)
+        return movimiento

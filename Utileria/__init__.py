@@ -9,7 +9,8 @@ from abc import ABCMeta, abstractmethod
 BLANCO = 255, 255, 255,
 NEGRO = 0, 0, 0,
 GRIS_OSCURO = 39, 40, 39
-AZUL = 0, 0, 255,
+AZUL = 0, 151, 219,
+NARANAJA = 230, 114, 35,
 
 # Funciones
 def dibujar_texto(texto, fuente, superficie, x, y, COLOR):
@@ -111,7 +112,7 @@ class Director(object):
     def __init__(self):
         self.screen = display.set_mode((500, 650))
         display.set_mode((500, 650))
-        display.set_caption("Tic Tac Toe")
+        display.set_caption("#BakerChallenge")
         self.scene = None
         self.quit_flag = False
         self.clock = time.Clock()

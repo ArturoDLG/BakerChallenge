@@ -1,21 +1,28 @@
 from Utileria import Director
-from Escenas.Escenarios import EscenaIntro, EscenaOpcion, EscenaJuego
-from itertools import  cycle
+from Escenas.Escenarios import EscenaIntro, EscenaJuego, EscenaGanador, EscenaContinuar
 
 if __name__ == '__main__':
     director = Director()
     intro = EscenaIntro(director)
-    opcion = EscenaOpcion(director)
-    juego = EscenaJuego(director)
+    ganador = EscenaGanador(director)
+    continuar = EscenaContinuar(director)
 
     director.change_scene(intro)
     director.loop()
 
-    director.change_scene(opcion)
-    director.loop()
+    while continuar.respuesta_continuar:
+            juego = EscenaJuego(director)
 
-    juego.imagen_jugador = opcion.imagen_jugador
-    juego.imagen_IA = opcion.imagen_IA
+            juego.reproducir_musica()
+            director.change_scene(juego)
+            director.loop()
 
-    director.change_scene(juego)
-    director.loop()
+            ganador.ganador = juego.tablero_virtual.ganador()
+            director.change_scene(ganador)
+            director.loop()
+
+            del juego
+
+            director.change_scene(continuar)
+            director.loop()
+
