@@ -78,7 +78,7 @@ class EscenaJuego(Escenario):
             self.color_jugador = AZUL
             self.color_IA = NARANAJA
 
-        if self.turno == IA and self.contador == 10:
+        if self.turno == IA and self.contador == 3:
             self.click.play()
             mov = self.jugador_IA.realizar_movimiento(self.tablero_virtual, self.turno)
             self.casillas_validas[mov].imagen = self.imagen_IA

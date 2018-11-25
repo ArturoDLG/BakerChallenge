@@ -74,22 +74,23 @@ class JugadorIA:
 
     @staticmethod
     def realizar_movimiento(tablero, jugador):
-
+#
         oponente = {JUGADOR: IA, IA: JUGADOR}
 
-        def evaluar_movimiento(movimiento, j=jugador):
+        def evaluar_movimiento(movimiento, j=jugador, profundidad=1):
             """Evalua el mejor movimiento a realizar
             para poder ganar"""
             try:
                 tablero.hacer_movimiento(movimiento, j)
                 if tablero.fin_del_juego():
                     """Evalua la puntuacion del movimiento a realizar
-                       Retorna 1 si la jugada lo hace ganar
-                       Retorna 0 si la jugada no determina el juego
+                       Retorna 1/profundidad si la jugada lo hace ganar
+                       Retorna 0 si la jugada empata el juego
                        Retorna -1 si la jugada hace perder"""
-                    return {jugador: 1, None: 0}.get(tablero.ganador(), -1)
 
-                resultados = (evaluar_movimiento(sig_movimiento, oponente[j])
+                    return {jugador: 1/profundidad, None: 0}.get(tablero.ganador(), -1)
+
+                resultados = (evaluar_movimiento(sig_movimiento, oponente[j], profundidad+1)
                               for sig_movimiento in tablero.movimientos_validos())
 
                 if j == jugador:
@@ -111,8 +112,8 @@ class JugadorIA:
             finally:
                 tablero.deshacer_movimiento(movimiento)
 
-        movimientos = [(movimiento, evaluar_movimiento(movimiento))
-                       for movimiento in tablero.movimientos_validos()]
+        movimientos = ((movimiento, evaluar_movimiento(movimiento))
+                       for movimiento in tablero.movimientos_validos())
         movimiento = max(movimientos, key=itemgetter(1))[0]
         tablero.hacer_movimiento(movimiento, jugador)
         return movimiento
