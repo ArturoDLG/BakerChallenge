@@ -120,7 +120,7 @@ class Director(object):
         self.quit_flag = False
         self.clock = time.Clock()
 
-    def loop(self):
+    def __loop(self):
         """Pone en funcionamiento el juego."""
         while not self.quit_flag:
             time = self.clock.tick(60)
@@ -146,3 +146,4 @@ class Director(object):
         """Alterna la escena actual."""
         self.scene = scene
         self.quit_flag = False
+        self.__loop()

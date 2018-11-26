@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="03200a95-00d0-4522-95b3-df34052f22e0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Escenas/Escenarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/Escenas/Escenarios.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MiniMax/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/MiniMax/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utileria/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utileria/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +15,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/TicTacToe$tresenraya.coverage" NAME="tresenraya Coverage Results" MODIFIED="1542690712024" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../tresenraya" />
-    <SUITE FILE_PATH="coverage/TicTacToe$main.coverage" NAME="main Coverage Results" MODIFIED="1543106762629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/TicTacToe$main.coverage" NAME="main Coverage Results" MODIFIED="1543243404043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TicTacToe$Escenarios.coverage" NAME="Escenarios Coverage Results" MODIFIED="1542512182468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Escenas" />
   </component>
   <component name="DatabaseView">
@@ -33,19 +34,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MiniMax/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="87" column="61" lean-forward="true" selection-start-line="87" selection-start-column="61" selection-end-line="87" selection-end-column="61" />
+            <state relative-caret-position="2006">
+              <caret line="118" column="25" lean-forward="true" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
               <folding>
-                <marker date="1543106807453" expanded="true" signature="1096:1101" ph="..." />
-                <marker date="1543106807453" expanded="true" signature="1621:1712" ph="..." />
-                <marker date="1543106807453" expanded="true" signature="2371:2581" ph="..." />
-                <marker date="1543106807453" expanded="true" signature="2624:2633" ph="..." />
-                <marker date="1543106807453" expanded="true" signature="2785:2790" ph="..." />
-                <marker date="1543106807453" expanded="true" signature="2888:2935" ph="..." />
-                <marker date="1543106807453" expanded="true" signature="2935:2940" ph="..." />
+                <marker date="1543243364073" expanded="true" signature="1096:1101" ph="..." />
+                <marker date="1543243364073" expanded="true" signature="1621:1712" ph="..." />
+                <marker date="1543243364073" expanded="true" signature="2371:2581" ph="..." />
+                <marker date="1543243364073" expanded="true" signature="2624:2633" ph="..." />
+                <marker date="1543243364073" expanded="true" signature="2785:2790" ph="..." />
+                <marker date="1543243364073" expanded="true" signature="2888:2935" ph="..." />
+                <marker date="1543243364073" expanded="true" signature="2935:2940" ph="..." />
               </folding>
             </state>
           </provider>
@@ -54,21 +55,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Utileria/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+            <state relative-caret-position="516">
+              <caret line="148" column="21" selection-start-line="148" selection-start-column="21" selection-end-line="148" selection-end-column="21" />
               <folding>
-                <marker date="1542812103420" expanded="true" signature="723:3294" ph="..." />
-                <marker date="1542812103420" expanded="true" signature="1950:2493" ph="..." />
+                <element signature="e#50#96#0" expanded="true" />
+                <marker date="1543243363933" expanded="true" signature="723:3294" ph="..." />
+                <marker date="1543243363933" expanded="true" signature="1950:2493" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+            <state relative-caret-position="17">
+              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -79,7 +81,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Escenas/Escenarios.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
+            <state relative-caret-position="1292">
               <caret line="80" column="50" selection-start-line="80" selection-start-column="50" selection-end-line="80" selection-end-column="50" />
               <folding>
                 <marker date="1543105180496" expanded="true" signature="603:1210" ph="..." />
@@ -142,10 +144,10 @@
         <option value="$PROJECT_DIR$/utileria/__init__.py" />
         <option value="$PROJECT_DIR$/../tresenraya/tresenraya.py" />
         <option value="$PROJECT_DIR$/Other_MiniMax/__init__.py" />
-        <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/Utileria/__init__.py" />
         <option value="$PROJECT_DIR$/Escenas/Escenarios.py" />
         <option value="$PROJECT_DIR$/MiniMax/__init__.py" />
+        <option value="$PROJECT_DIR$/Utileria/__init__.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -161,7 +163,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,6 +189,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -284,8 +286,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.main" />
       <item itemvalue="Python.Escenarios" />
+      <item itemvalue="Python.main" />
       <item itemvalue="Python.tresenraya" />
     </list>
     <recent_temporary>
@@ -306,18 +308,19 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542492722345</updated>
-      <workItem from="1543030326795" duration="2952000" />
+      <workItem from="1543030326795" duration="3545000" />
+      <workItem from="1543241182303" duration="2379000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2952000" />
+    <option name="totallyTimeSpent" value="5924000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989605" visible="true" weight="0.21676737" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989605" visible="true" weight="0.21978852" />
       <window_info id="Structure" order="1" sideWeight="0.5010395" side_tool="true" weight="0.19864048" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -413,30 +416,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Utileria/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding>
-            <marker date="1542812103420" expanded="true" signature="723:3294" ph="..." />
-            <marker date="1542812103420" expanded="true" signature="1950:2493" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Escenas/Escenarios.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
+        <state relative-caret-position="1292">
           <caret line="80" column="50" selection-start-line="80" selection-start-column="50" selection-end-line="80" selection-end-column="50" />
           <folding>
             <marker date="1543105180496" expanded="true" signature="603:1210" ph="..." />
@@ -454,18 +436,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Utileria/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="148" column="21" selection-start-line="148" selection-start-column="21" selection-end-line="148" selection-end-column="21" />
+          <folding>
+            <element signature="e#50#96#0" expanded="true" />
+            <marker date="1543243363933" expanded="true" signature="723:3294" ph="..." />
+            <marker date="1543243363933" expanded="true" signature="1950:2493" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MiniMax/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="87" column="61" lean-forward="true" selection-start-line="87" selection-start-column="61" selection-end-line="87" selection-end-column="61" />
+        <state relative-caret-position="2006">
+          <caret line="118" column="25" lean-forward="true" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
           <folding>
-            <marker date="1543106807453" expanded="true" signature="1096:1101" ph="..." />
-            <marker date="1543106807453" expanded="true" signature="1621:1712" ph="..." />
-            <marker date="1543106807453" expanded="true" signature="2371:2581" ph="..." />
-            <marker date="1543106807453" expanded="true" signature="2624:2633" ph="..." />
-            <marker date="1543106807453" expanded="true" signature="2785:2790" ph="..." />
-            <marker date="1543106807453" expanded="true" signature="2888:2935" ph="..." />
-            <marker date="1543106807453" expanded="true" signature="2935:2940" ph="..." />
+            <marker date="1543243364073" expanded="true" signature="1096:1101" ph="..." />
+            <marker date="1543243364073" expanded="true" signature="1621:1712" ph="..." />
+            <marker date="1543243364073" expanded="true" signature="2371:2581" ph="..." />
+            <marker date="1543243364073" expanded="true" signature="2624:2633" ph="..." />
+            <marker date="1543243364073" expanded="true" signature="2785:2790" ph="..." />
+            <marker date="1543243364073" expanded="true" signature="2888:2935" ph="..." />
+            <marker date="1543243364073" expanded="true" signature="2935:2940" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
